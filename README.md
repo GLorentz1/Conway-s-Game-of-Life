@@ -21,4 +21,5 @@ How to use:
 - When you're done inserting live cells, press the SPACE key, that will make the program run
 - You are still able to change a cell's state by clicking.
 - When you want to finish the program, press the TAB key.
+- If you ever want to reset your grid, press the Left Shift key.
 
