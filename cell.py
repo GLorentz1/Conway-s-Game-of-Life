@@ -30,3 +30,6 @@ class Cell:
             if countNeighbor == 3:
                 newState = 1
         return newState
+        
+    def setState(self, newState):
+        self.state = newState

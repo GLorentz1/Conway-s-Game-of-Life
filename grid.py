@@ -37,6 +37,17 @@ class Grid:
                 x += self.cellSize
         pyg.display.update()
 
+    def resetGrid(self, window):
+        y = - 1 * self.cellSize
+        for i in range(self.numCellsVertical):
+            y += self.cellSize
+            x = 0
+            for j in range(self.numCellsHorizontal):
+                self.data[i][j].setState(0)
+                self.data[i][j].drawCell(window, x, y, self.cellSize)
+                x += self.cellSize
+        pyg.display.update()
+    
     def nextGrid(self, newGrid):
         for i in range(self.numCellsVertical):
             for j in range(self.numCellsHorizontal):

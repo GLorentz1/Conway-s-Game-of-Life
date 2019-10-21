@@ -11,11 +11,12 @@ window = pyg.display.set_mode((WIDTH, HEIGHT))
 pyg.display.set_caption("Conway's Game of Life")
 clock = pyg.time.Clock()
 
-print(grid1.countNeighbors(1000//20 - 1, 1000//20 - 1))
+print(grid1.countNeighbors(HEIGHT//20 - 1, HEIGHT//20 - 1))
 
 grid1.drawGrid(window)
 
 running = True
+runSim = False
 while running:
     clock.tick(FPS)
     for event in pyg.event.get():
@@ -28,12 +29,17 @@ while running:
             grid1.updateCellStatus(x,y, window)
         elif event.type == pyg.KEYDOWN:
             if event.key == pyg.K_SPACE:
-                while running:
+                runSim = True
+                while runSim:
                     grid1.nextGrid(grid_aux)
                     grid_aux.copyGrid(grid1)
                     grid1.drawGrid(window)
                     for event in pyg.event.get():
                         if event.type == pyg.KEYDOWN:
+                            if event.key == pyg.K_LSHIFT:
+                                grid1.resetGrid(window)
+                                runSim = False
+                                
                             if event.key == pyg.K_TAB:
                                 running = False
                                 pyg.display.quit()
@@ -42,3 +48,10 @@ while running:
                             x, y = pyg.mouse.get_pos()
                             grid1.updateCellStatus(x, y, window)
                     pyg.time.wait(100)
+                    
+            if event.key == pyg.K_LSHIFT:
+                grid1.resetGrid(window)              
+            if event.key == pyg.K_TAB:
+                running = False
+                pyg.display.quit()
+                exit()
